@@ -5,13 +5,6 @@ class Blog extends Model {}
 
 Blog.init(
   {
-    //Table ID
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
     //Title of the blog
     title: {
       type: DataTypes.STRING,
@@ -24,10 +17,9 @@ Blog.init(
     },
     //The id of the user that created the blog
     user_id: {
-      type: DataTypes.INT,
+      type: DataTypes.INTEGER,
       references: {
         model: `user`,
-        key: `id`,
       },
     },
   },
