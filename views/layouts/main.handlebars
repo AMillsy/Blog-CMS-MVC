@@ -1,0 +1,32 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogs</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="header-container"><a class="nav-link"><h1
+            class="hover-effect"
+          ><span class="header-logo">B</span>logged</h1>
+        </a>
+        <button class="btn btn-generic hover-effect"><a
+            class="nav-link"
+            href="/"
+          >Home</a></button></div>
+      <div class="button-container">
+
+        {{#if loggedIn}}
+          <div class="account"></div>
+        {{else}}
+          <button class="btn login hover-effect">
+            <a class="nav-link" href="/login">Login / SignUp</a>
+          </button>
+        {{/if}}
+      </div>
+    </nav>
+    {{{body}}}
+  </body>
+</html>
