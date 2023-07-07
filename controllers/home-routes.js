@@ -72,14 +72,10 @@ router.get("/painting/:id", withAuth, async (req, res) => {
   }
 });
 
-router.get("/login", (req, res) => {
+router.get("/login", async (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");
-    return;
   }
-
   res.render("login");
 });
-
-router.get("/login", async (req, res) => {});
 module.exports = router;
