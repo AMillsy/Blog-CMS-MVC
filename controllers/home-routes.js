@@ -19,6 +19,7 @@ router.get("/", async (req, res) => {
 
     res.render("homepage", {
       blogs,
+      user: req.session.username,
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
@@ -53,22 +54,12 @@ router.get("/blog/:id", withAuth, async (req, res) => {
       return blog.id != id;
     });
     console.log(userBlogs);
-    res.render("blog", { blog, userBlogs, loggedIn: req.session.loggedIn });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
-// GET one painting
-// TODO: Replace the logic below with the custom middleware
-router.get("/painting/:id", withAuth, async (req, res) => {
-  try {
-    const dbPaintingData = await Painting.findByPk(req.params.id);
-
-    const painting = dbPaintingData.get({ plain: true });
-
-    res.render("painting", { painting, loggedIn: req.session.loggedIn });
+    res.render("blog", {
+      blog,
+      userBlogs,
+      user: req.session.username,
+      loggedIn: req.session.loggedIn,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -80,5 +71,21 @@ router.get("/login", async (req, res) => {
     res.redirect("/");
   }
   res.render("login");
+});
+
+router.get("/account", withAuth, async (req, res) => {
+  const userData = await User.findOne({
+    attributes: ["username"],
+    include: [{ model: Blog }],
+    where: {
+      username: req.session.username,
+    },
+  });
+  const user = userData.get({ plain: true });
+  console.log(user);
+  res.render("account", {
+    user: req.session.username,
+    loggedIn: req.session.loggedIn,
+  });
 });
 module.exports = router;
