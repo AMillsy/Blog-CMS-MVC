@@ -101,3 +101,8 @@ nav {
 h3 {
   font-size: 125%;
 }
+
+.warn-login {
+  color: red;
+  display: none;
+}
