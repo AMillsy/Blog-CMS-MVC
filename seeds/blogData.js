@@ -12,14 +12,14 @@ const blogdata = [
     id: 2,
     title: "blogtastic 2",
     content: "something amazing is happening woop woop",
-    user_id: 2,
+    user_id: 1,
   },
 
   {
     id: 3,
     title: "blogtastic 3",
     content: "something amazing is happening woop woop",
-    user_id: 3,
+    user_id: 1,
   },
 
   {

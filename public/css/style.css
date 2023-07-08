@@ -142,3 +142,34 @@ h3 {
   text-overflow: ellipsis;
   display: block;
 }
+
+.blog-article {
+  position: relative;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--primary-colour);
+}
+
+.blog-author {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 10px;
+}
+
+.blog-title {
+  font-size: 200%;
+  text-transform: capitalize;
+  padding: 10px;
+}
+.blog-content {
+  text-align: center;
+}
+
+.other-blogs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
