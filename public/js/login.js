@@ -41,7 +41,17 @@ signUpForm.addEventListener(`submit`, async function (e) {
       body: JSON.stringify({ username, email, password }),
       headers: { "Content-Type": "application/json" },
     });
-  } catch (error) {}
+
+    if (response.ok) {
+      document.location.replace(`/`);
+    } else {
+      signupWarning.style.display = "inline";
+      showWarning(signupWarning);
+    }
+  } catch (error) {
+    loginWarning.style.display = `inline`;
+    showWarning(loginWarning);
+  }
 });
 
 function showWarning(content) {

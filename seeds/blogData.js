@@ -4,7 +4,8 @@ const blogdata = [
   {
     id: 1,
     title: "blogtastic 1",
-    content: "something amazing is happening woop woop",
+    content:
+      "something amazing is happening woop woop dlaishdalshasdali hjasdlasidh asldiahsdasdas \n asoidhjadliasjd spdiahjdjl \n oidhadilhasdasdliahs ",
     user_id: 1,
   },
   {

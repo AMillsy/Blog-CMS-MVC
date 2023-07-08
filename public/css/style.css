@@ -1,6 +1,7 @@
 :root {
   --primary-colour: #e8c2ca;
-  --secondary-colour: black;
+  --secondary-colour: #0d160b;
+  --tertiary-colour: #c14953;
 }
 h1 {
   font-size: 250%;
@@ -105,4 +106,39 @@ h3 {
 .warn-login {
   color: red;
   display: none;
+}
+
+.home-blogs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  color: var(--secondary-colour);
+  width: 80%;
+  position: relative;
+  background-color: var(--primary-colour);
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.author-card {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 5px;
+  color: var(--tertiary-colour);
+}
+
+.card-content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
