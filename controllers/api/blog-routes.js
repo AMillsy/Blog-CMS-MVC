@@ -38,3 +38,21 @@ router.post(`/`, async (req, res) => {
     res.status(400).json(error);
   }
 });
+
+router.post(`/edit`, async (req, res) => {
+  const { title, content, id } = req.body;
+
+  if (!(title || content || id))
+    return res.status(400).json({ message: `Please fill out all fields` });
+
+  try {
+    const updateBlog = await Blog.update(
+      { title: title, content: content },
+      { where: { id: id } }
+    );
+
+    res.status(200).json(updateBlog);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});

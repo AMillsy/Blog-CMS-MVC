@@ -1,9 +1,7 @@
 const router = require("express").Router();
 const { Blog, User, Comment } = require("../models");
 const withAuth = require(`../utils/auth`);
-// TODO: Import the custom middleware
 
-// GET all blogs for homepage
 router.get("/", async (req, res) => {
   try {
     const blogData = await Blog.findAll({
@@ -95,9 +93,11 @@ router.get("/account", withAuth, async (req, res) => {
     },
   });
   const user = userData.get({ plain: true });
+  const { blogs } = user;
   console.log(user);
   res.render("account", {
     user: req.session.username,
+    blogs,
     loggedIn: req.session.loggedIn,
   });
 });

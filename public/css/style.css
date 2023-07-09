@@ -3,6 +3,9 @@
   --secondary-colour: #0d160b;
   --tertiary-colour: #c14953;
 }
+html {
+  scroll-behavior: smooth;
+}
 h1 {
   font-size: 250%;
 }
@@ -136,6 +139,9 @@ h3 {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .author-card {
@@ -195,7 +201,7 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;
+  width: 100%;
 }
 .create-title {
   padding: 10px;
@@ -224,6 +230,9 @@ h3 {
 
   color: var(--primary-colour);
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.account-btn:hover {
+  cursor: pointer;
 }
 #logout {
   position: absolute;
@@ -294,4 +303,26 @@ h3 {
 #add-comment:focus {
   border: none;
   border-bottom: 1px solid var(--primary-colour);
+}
+.create-blog-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-btns {
+  display: flex;
+}
+.hidden {
+  display: none;
+}
+
+.edit-blog-section {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 100%;
+  align-items: center;
 }
