@@ -3,10 +3,12 @@ const { Blog, User, Comment } = require(`../../models`);
 
 router.get("/", async (req, res) => {
   const commentData = await Comment.findAll({
-    include: [{ model: User }, { model: Blog }],
+    include: [{ model: User, attributes: ["username"] }, { model: Blog }],
   });
 
-  res.status(200).json(commentData);
+  const comments = commentData.map((comment) => comment.get({ plain: true }));
+
+  res.status(200).json(comments);
 });
 
 module.exports = router;

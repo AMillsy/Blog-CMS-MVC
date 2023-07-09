@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Blog, User } = require("../models");
+const { Blog, User, Comment } = require("../models");
 const withAuth = require(`../utils/auth`);
 // TODO: Import the custom middleware
 
@@ -36,27 +36,34 @@ router.get("/blog/:id", withAuth, async (req, res) => {
           model: User,
           attributes: ["username"],
         },
+        {
+          model: Comment,
+          include: [{ model: User, attributes: ["username"] }],
+        },
       ],
     });
 
-    const blog = dbBlogData.get({ plain: true });
+    const blog = await dbBlogData.get({ plain: true });
 
     const userBlogData = await User.findOne({
       attributes: ["username"],
-      include: [{ model: Blog }, { model: Comment }],
+      include: [{ model: Blog }],
       where: {
         username: blog.user.username,
       },
     });
     const { blogs: user } = userBlogData.get({ plain: true });
     userBlogs = user.filter(({ id }) => {
-      console.log(blog.id, id);
       return blog.id != id;
     });
-    console.log(userBlogs);
+
+    const { comments } = blog;
+    console.log(comments);
+
     res.render("blog", {
       blog,
       userBlogs,
+      comments,
       user: req.session.username,
       loggedIn: req.session.loggedIn,
     });
