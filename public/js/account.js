@@ -7,7 +7,7 @@ const title = document.querySelector(`#title`);
 const content = document.querySelector(`#content`);
 makeBtn.addEventListener(`click`, function (e) {
   blogForm.dataset.id = 0;
-  title.textContent = "";
+  title.value = "";
   content.textContent = "";
   createBtn.textContent = "Create Blog!";
   makeBtn.classList.add(`hidden`);
@@ -57,7 +57,7 @@ editBlog.addEventListener(`click`, function (e) {
   createBtn.textContent = "Edit Blog!";
   blogForm.classList.remove(`hidden`);
   blogForm.classList.add(`create-blog-form`);
-  makeBtn.classList.add(`hidden`);
+  makeBtn.classList.remove(`hidden`);
   createBtn.classList.remove(`hidden`);
 
   blogForm.dataset.id = blog.dataset.id;
