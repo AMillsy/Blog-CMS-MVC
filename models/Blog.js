@@ -12,7 +12,7 @@ Blog.init(
     },
     //Content in the blog
     content: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     //The id of the user that created the blog
