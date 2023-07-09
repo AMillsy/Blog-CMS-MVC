@@ -43,7 +43,7 @@ router.get("/blog/:id", withAuth, async (req, res) => {
 
     const userBlogData = await User.findOne({
       attributes: ["username"],
-      include: [{ model: Blog }],
+      include: [{ model: Blog }, { model: Comment }],
       where: {
         username: blog.user.username,
       },
