@@ -52,6 +52,7 @@ router.get("/blog/:id", withAuth, async (req, res) => {
         username: blog.user.username,
       },
     });
+
     const { blogs: user } = userBlogData.get({ plain: true });
     userBlogs = user.filter(({ id }) => {
       return blog.id != id;
@@ -60,10 +61,16 @@ router.get("/blog/:id", withAuth, async (req, res) => {
     const { comments } = blog;
     console.log(comments);
 
+    const commentData = comments.map(({ comment, user }) => {
+      return { comment: comment, username: user.username };
+    });
+
+    console.log(commentData);
+
     res.render("blog", {
       blog,
       userBlogs,
-      comments,
+      commentData,
       user: req.session.username,
       loggedIn: req.session.loggedIn,
     });

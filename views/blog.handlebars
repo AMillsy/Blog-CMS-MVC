@@ -2,8 +2,13 @@
   <h2 class="blog-title">{{blog.title}}</h2>
   <p class="blog-author">{{blog.user.username}}</p>
   <p class="blog-content">{{blog.content}}</p>
+ 
 </article>
-
+ <div class="comment-container">
+    {{#each commentData as |comment|}}
+    {{> comment-partial}}
+    {{/each}}
+  </div>
 <aside class="other-blogs">
     {{#if userBlogs}}
   <h3>Other blogs by {{blog.user.username}}</h3>
