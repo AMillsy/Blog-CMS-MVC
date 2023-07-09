@@ -256,13 +256,19 @@ h3 {
   margin: 20px;
   border: 2px solid black;
   border-radius: 2rem;
+  padding: 5px;
+  font-size: 75%;
 }
 
 .comment {
+  position: relative;
   background-color: var(--tertiary-colour);
   margin: 5px;
-  padding: 10px;
-  line-height: 30px;
+  padding: 5px;
+  line-height: 20px;
+  width: 40%;
+  min-height: 50px;
+  word-wrap: break-word;
   color: white;
   border-radius: 1rem;
   border: 2px solid black;
@@ -271,6 +277,10 @@ h3 {
 
 .comment-author {
   color: #111;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 5px;
 }
 
 #add-comment {
