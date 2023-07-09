@@ -254,6 +254,8 @@ h3 {
   flex-direction: column;
   align-items: center;
   margin: 20px;
+  border: 2px solid black;
+  border-radius: 2rem;
 }
 
 .comment {
@@ -269,4 +271,17 @@ h3 {
 
 .comment-author {
   color: #111;
+}
+
+#add-comment {
+  padding: 3px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid black;
+  transition: all 0.3s ease-in-out;
+}
+
+#add-comment:focus {
+  border: none;
+  border-bottom: 1px solid var(--primary-colour);
 }

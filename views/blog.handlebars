@@ -1,10 +1,14 @@
-<article class="blog-article">
+<article class="blog-article" data-id="{{blog.id}}">
   <h2 class="blog-title">{{blog.title}}</h2>
   <p class="blog-author">{{blog.user.username}}</p>
   <p class="blog-content">{{blog.content}}</p>
  
 </article>
  <div class="comment-container">
+    <h3>Comment section:</h3>
+    <form>
+    <input type="text" id="add-comment" placeholder="Add a comment...">
+    </form>
     {{#each commentData as |comment|}}
     {{> comment-partial}}
     {{/each}}
@@ -17,3 +21,5 @@
   {{/each}}
   {{/if}}
 </aside>
+
+<script src="/js/blog.js"></script>

@@ -41,10 +41,12 @@ router.get("/blog/:id", withAuth, async (req, res) => {
           include: [{ model: User, attributes: ["username"] }],
         },
       ],
+      order: [[{ model: Comment, as: `comments` }, `updatedAt`, `DESC`]],
     });
 
     const blog = await dbBlogData.get({ plain: true });
-
+    console.log(blog.comments);
+    console.log(blog);
     const userBlogData = await User.findOne({
       attributes: ["username"],
       include: [{ model: Blog }],
@@ -59,13 +61,10 @@ router.get("/blog/:id", withAuth, async (req, res) => {
     });
 
     const { comments } = blog;
-    console.log(comments);
 
     const commentData = comments.map(({ comment, user }) => {
       return { comment: comment, username: user.username };
     });
-
-    console.log(commentData);
 
     res.render("blog", {
       blog,
