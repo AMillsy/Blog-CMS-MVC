@@ -29,7 +29,6 @@ signUpForm.addEventListener(`submit`, async function (e) {
   const username = formContainer.children[1].value.trim();
   const email = formContainer.children[3].value.trim();
   const password = formContainer.children[5].value.trim();
-  console.log(username, email, password);
   try {
     const response = await fetch(`/api/users`, {
       method: `POST`,

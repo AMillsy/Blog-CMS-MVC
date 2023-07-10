@@ -49,7 +49,6 @@ const blogdata = [
     user_id: 2,
   },
 ];
-console.log(blogdata);
 const seedBlog = () => Blog.bulkCreate(blogdata);
 
 module.exports = seedBlog;

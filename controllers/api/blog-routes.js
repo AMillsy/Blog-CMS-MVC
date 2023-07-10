@@ -18,8 +18,6 @@ router.post(`/`, async (req, res) => {
       .status(400)
       .json({ message: `Please fill out the title and the content` });
   }
-
-  console.log(title, content);
   try {
     const user = await User.findOne({
       where: {
@@ -27,7 +25,6 @@ router.post(`/`, async (req, res) => {
       },
     });
     const { id } = user.get({ plain: true });
-    console.log(id);
     const createdBlog = await Blog.create({
       title: title,
       content: content,

@@ -2,8 +2,6 @@ const router = require("express").Router();
 const { User, Blog } = require("../../models");
 
 router.get(`/`, async (req, res) => {
-  console.log(req.session);
-
   const userData = await User.findAll({
     subQuery: false,
     include: [{ model: Blog }],

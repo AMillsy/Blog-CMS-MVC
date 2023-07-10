@@ -43,8 +43,6 @@ router.get("/blog/:id", withAuth, async (req, res) => {
     });
 
     const blog = await dbBlogData.get({ plain: true });
-    console.log(blog.comments);
-    console.log(blog);
     const userBlogData = await User.findOne({
       attributes: ["username"],
       include: [{ model: Blog }],
@@ -94,7 +92,6 @@ router.get("/account", withAuth, async (req, res) => {
   });
   const user = userData.get({ plain: true });
   const { blogs } = user;
-  console.log(user);
   res.render("account", {
     user: req.session.username,
     blogs,

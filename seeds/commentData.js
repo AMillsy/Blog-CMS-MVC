@@ -13,7 +13,6 @@ const commentdata = [
     blog_id: 1,
   },
 ];
-console.log(commentdata);
 const seedComment = () => Comment.bulkCreate(commentdata);
 
 module.exports = seedComment;

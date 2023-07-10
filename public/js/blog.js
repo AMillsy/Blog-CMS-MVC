@@ -4,7 +4,6 @@ form.addEventListener(`submit`, async function (e) {
   e.preventDefault();
   const comment = document.querySelector(`#add-comment`).value;
   if (!comment) return;
-  console.log(comment);
   const response = await fetch(`/api/comments`, {
     method: `POST`,
     body: JSON.stringify({ comment, id }),

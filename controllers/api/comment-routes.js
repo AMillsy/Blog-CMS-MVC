@@ -14,7 +14,6 @@ router.get("/", async (req, res) => {
 
 router.post("/", withAuth, async (req, res) => {
   const { comment, id } = req.body;
-  console.log(id, comment);
   if (!(id || comment)) {
     return res.status(400).json({ message: "Error with comment" });
   }
