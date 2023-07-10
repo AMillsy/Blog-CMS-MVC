@@ -19,14 +19,15 @@ makeBtn.addEventListener(`click`, function (e) {
 createBtn.addEventListener(`click`, async function (e) {
   const title = document.querySelector(`#title`).value;
   const content = document.querySelector(`#content`).value;
-
+  console.log(`Is this working `);
   if (!title || !content) {
     warningText.textContent = `Please fill out all fields`;
     warningText.style.display = `inline`;
     showWarning(warningText);
     return;
   }
-  const id = blogForm.dataset.id;
+  const id = Number(blogForm.dataset.id);
+  console.log(id);
   if (id === 0) {
     makeNewBlog(title, content);
   } else {
@@ -64,6 +65,7 @@ editBlog.addEventListener(`click`, function (e) {
 });
 
 async function makeNewBlog(title, content) {
+  console.log(`Making new blog`);
   const response = await fetch(`/api/blogs`, {
     method: `POST`,
     body: JSON.stringify({ title, content }),
@@ -74,6 +76,7 @@ async function makeNewBlog(title, content) {
 }
 
 async function editCurrentBlog(title, content, id) {
+  console.log(`Editing blog`);
   const response = await fetch(`/api/blogs/edit`, {
     method: `POST`,
     body: JSON.stringify({ title, content, id }),
@@ -85,7 +88,7 @@ async function editCurrentBlog(title, content, id) {
 
 async function returnResponse(response) {
   if (response.ok) {
-    location.reload();
+    window.location.reload();
   } else {
     const { message: responseData } = await response.json();
     const warning =

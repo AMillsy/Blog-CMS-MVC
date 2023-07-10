@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.username = req.body.username;
-      res.status(200).json(dbUserData);
+      res.status(200).redirect("/");
     });
   } catch (err) {
     console.log(err);
@@ -62,9 +62,7 @@ router.post("/login", async (req, res) => {
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.username = req.body.username;
-      res
-        .status(200)
-        .json({ user: dbUserData, message: "You are now logged in!" });
+      res.status(200).redirect("/");
     });
   } catch (err) {
     console.log(err);

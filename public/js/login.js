@@ -1,7 +1,7 @@
 const loginForm = document.querySelector(`#login`);
 const signUpForm = document.querySelector(`#sign-up`);
 const loginWarning = document.querySelector(`#login-warning`);
-const signupWarning = document.querySelector(`#signup-warning`);
+const signupWarning = document.querySelector(`#sign-up-warning`);
 
 loginForm.addEventListener(`submit`, async function (e) {
   e.preventDefault();
@@ -16,12 +16,7 @@ loginForm.addEventListener(`submit`, async function (e) {
       headers: { "Content-Type": "application/json" },
     });
 
-    if (response.ok) {
-      document.location.replace(`/`);
-    } else {
-      loginWarning.style.display = `inline`;
-      showWarning(loginWarning);
-    }
+    configResponse(response, loginWarning);
   } catch (error) {
     loginWarning.style.display = `inline`;
     showWarning(loginWarning);
@@ -42,13 +37,10 @@ signUpForm.addEventListener(`submit`, async function (e) {
       headers: { "Content-Type": "application/json" },
     });
 
-    if (response.ok) {
-      document.location.replace(`/`);
-    } else {
-      signupWarning.style.display = "inline";
-      showWarning(signupWarning);
-    }
+    configResponse(response, signupWarning);
   } catch (error) {
+    const { message } = await response.json();
+    loginWarning.textContent = message || `Error signing up, Please Try again`;
     loginWarning.style.display = `inline`;
     showWarning(loginWarning);
   }
@@ -58,4 +50,13 @@ function showWarning(content) {
   setTimeout(function () {
     content.style.display = `none`;
   }, 1000);
+}
+
+async function configResponse(response, warning) {
+  if (response.ok) {
+    window.location.replace("/");
+  } else {
+    warning.style.display = "inline";
+    showWarning(warning);
+  }
 }
