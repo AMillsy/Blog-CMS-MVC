@@ -49,6 +49,29 @@ const blogdata = [
     user_id: 2,
   },
 ];
-const seedBlog = () => Blog.bulkCreate(blogdata);
+
+function randomDate(start, end) {
+  return new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  );
+}
+
+async function getRandomDates(blogs) {
+  blogs.map(async (blog) => {
+    const date = randomDate(new Date(2012, 0, 1), new Date());
+    blog.changed("createdAt", true);
+    blog.set("createdAt", date, { raw: true });
+    await blog.save({
+      silent: true,
+      fields: ["createdAt"],
+    });
+  });
+}
+const seedBlog = async () => {
+  getRandomDates();
+  const data = await Blog.bulkCreate(blogdata, { fie });
+
+  return getRandomDates(data);
+};
 
 module.exports = seedBlog;

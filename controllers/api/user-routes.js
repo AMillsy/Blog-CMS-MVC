@@ -59,6 +59,7 @@ router.post("/login", async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
+      req.secure.idle = false;
       req.session.username = req.body.username;
       res.status(200).redirect("/");
     });
@@ -79,4 +80,10 @@ router.post("/logout", (req, res) => {
   }
 });
 
+router.post("/idle", (req, res) => {
+  req.session.save(() => {
+    req.session.idle = true;
+    res.status(200).reload();
+  });
+});
 module.exports = router;

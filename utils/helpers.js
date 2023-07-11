@@ -3,8 +3,12 @@ module.exports = {
     return date.toLocaleTimeString();
   },
   format_date: (date) => {
-    return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${
-      new Date(date).getFullYear() + 5
-    }`;
+    const newDate = new Date(date.setFullYear(date.getFullYear()));
+
+    return newDate.toLocaleDateString("en", {
+      year: "2-digit",
+      day: "2-digit",
+      month: "2-digit",
+    });
   },
 };

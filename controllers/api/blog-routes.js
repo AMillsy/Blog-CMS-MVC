@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Blog, User } = require(`../../models`);
+const idleAuth = require("../../utils/idle");
 
 router.get(`/`, async (req, res) => {
   const blogData = await Blog.findAll({
@@ -9,9 +10,7 @@ router.get(`/`, async (req, res) => {
   res.status(200).json(blogData);
 });
 
-module.exports = router;
-
-router.post(`/`, async (req, res) => {
+router.post(`/`, idleAuth, async (req, res) => {
   const { title, content } = req.body;
   if (!title || !content) {
     return res
@@ -36,9 +35,8 @@ router.post(`/`, async (req, res) => {
   }
 });
 
-router.post(`/edit`, async (req, res) => {
+router.post(`/edit`, idleAuth, async (req, res) => {
   const { title, content, id } = req.body;
-
   if (!(title || content || id))
     return res.status(400).json({ message: `Please fill out all fields` });
 
@@ -53,3 +51,9 @@ router.post(`/edit`, async (req, res) => {
     res.status(400).json(error);
   }
 });
+
+router.delete(`/:id`, idleAuth, async (req, res) => {
+  try {
+  } catch (error) {}
+});
+module.exports = router;

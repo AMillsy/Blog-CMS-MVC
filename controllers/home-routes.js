@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const sequelize = require("../config/connection");
 const { Blog, User, Comment } = require("../models");
 const withAuth = require(`../utils/auth`);
 
@@ -11,6 +12,7 @@ router.get("/", async (req, res) => {
           attributes: ["username"],
         },
       ],
+      order: sequelize.literal(`updatedAt DESC`),
     });
 
     const blogs = blogData.map((blog) => blog.get({ plain: true }));
