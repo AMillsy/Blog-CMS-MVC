@@ -67,11 +67,6 @@ async function getRandomDates(blogs) {
     });
   });
 }
-const seedBlog = async () => {
-  getRandomDates();
-  const data = await Blog.bulkCreate(blogdata, { fie });
-
-  return getRandomDates(data);
-};
+const seedBlog = async () => await Blog.bulkCreate(blogdata);
 
 module.exports = seedBlog;

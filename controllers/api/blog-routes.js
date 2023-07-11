@@ -54,6 +54,14 @@ router.post(`/edit`, idleAuth, async (req, res) => {
 
 router.delete(`/:id`, idleAuth, async (req, res) => {
   try {
-  } catch (error) {}
+    const deletedBlog = await Blog.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(200).json(deletedBlog);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 });
 module.exports = router;

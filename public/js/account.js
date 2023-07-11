@@ -3,6 +3,7 @@ const warningText = document.querySelector(`.warning`);
 const makeBtn = document.querySelector(`#start-blog`);
 const blogForm = document.querySelector(`#blog-form`);
 const editBlog = document.querySelector(`.edit-blog-section`);
+const deleteBtn = document.querySelector(`.delete-card`);
 const title = document.querySelector(`#title`);
 const content = document.querySelector(`#content`);
 makeBtn.addEventListener(`click`, function (e) {
@@ -42,6 +43,8 @@ function showWarning(content) {
 }
 
 editBlog.addEventListener(`click`, function (e) {
+  console.log(`I am here for some reason`);
+  if (e.target.classList.contains("delete-card")) return deleteCard(e);
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   const blog = e.target.closest(`button`);
@@ -93,5 +96,26 @@ async function returnResponse(response) {
     warningText.textContent = warning;
     warningText.style.display = `inline`;
     showWarning(warningText);
+  }
+}
+
+//DELETE CARD
+
+deleteBtn.addEventListener(`click`, deleteCard);
+
+async function deleteCard(e) {
+  e.stopPropagation();
+  const mainBtn = e.target.previousElementSibling;
+
+  const id = mainBtn.dataset.id;
+
+  console.log(id);
+
+  const response = await fetch(`/api/blogs/${id}`, {
+    method: `DELETE`,
+  });
+
+  if (response.ok) {
+    window.location.reload();
   }
 }
