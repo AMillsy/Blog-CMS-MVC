@@ -160,3 +160,9 @@ Edit Blogs
 Delete Blogs, as you can see "Unlocking the Secrets" isn't there anymore
 
 ![Delete Blog](./README_IMAGES/deleteblog.png)
+
+## Idle
+
+If the user is idle for longer then 20 minutes, then if they try to delete, edit or make a new blog then they are prompted to relogin
+
+![Relogin](./README_IMAGES/relogin.png)

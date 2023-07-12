@@ -1,7 +1,7 @@
 const body = document.querySelector(`body`);
 let idletime = 0;
 
-setInterval(timerIncrement, 60000);
+setInterval(timerIncrement, 60000); //60000 = 1 minute
 
 body.addEventListener(`mouseover`, function (e) {
   idletime = 0;
