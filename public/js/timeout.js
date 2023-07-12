@@ -15,9 +15,10 @@ function timerIncrement() {
   idletime++;
 
   if (idletime > 19) {
-    console.log(`IDLE FOR x MINUTES`);
     fetch("/api/users/idle", {
       method: `POST`,
     });
+
+    idletime = 0;
   }
 }

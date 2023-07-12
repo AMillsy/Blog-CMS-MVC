@@ -59,7 +59,7 @@ router.post("/login", async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
-      req.secure.idle = false;
+      req.session.idle = false;
       req.session.username = req.body.username;
       res.status(200).redirect("/");
     });
@@ -81,9 +81,17 @@ router.post("/logout", (req, res) => {
 });
 
 router.post("/idle", (req, res) => {
+  if (req.session.idle) return;
   req.session.save(() => {
     req.session.idle = true;
-    res.status(200).reload();
+    res.redirect("back");
   });
+});
+
+router.get("/idle", (req, res) => {
+  if (req.session.idle) {
+    res.status(200).json({ message: "relogin" });
+  }
+  res.status(200).json({ message: "Allowed to post" });
 });
 module.exports = router;

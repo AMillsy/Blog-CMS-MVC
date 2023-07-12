@@ -78,6 +78,7 @@ router.get("/blog/:id", withAuth, async (req, res) => {
 });
 
 router.get("/login", async (req, res) => {
+  console.log(`I AM IN THE LOGIN ROUTER`);
   if (req.session.loggedIn) {
     res.redirect("/");
   }
@@ -100,4 +101,15 @@ router.get("/account", withAuth, async (req, res) => {
     loggedIn: req.session.loggedIn,
   });
 });
+
+router.get("/relogin", async (req, res) => {
+  if (req.session.idle) {
+    return res.render("relogin", {
+      loggedIn: req.session.loggedIn,
+      user: req.session.username,
+    });
+  }
+  res.redirect("/");
+});
+
 module.exports = router;

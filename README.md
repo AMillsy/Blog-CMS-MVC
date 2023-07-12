@@ -13,4 +13,4 @@ A blog site with a Content Management System Style using Model View Controllers 
 
 ## Website
 
-[Blogged]()
+[Blogged](https://blogged-493c75ec6321.herokuapp.com/)

@@ -6,7 +6,13 @@ const editBlog = document.querySelector(`.edit-blog-section`);
 const deleteBtn = document.querySelector(`.delete-card`);
 const title = document.querySelector(`#title`);
 const content = document.querySelector(`#content`);
-makeBtn.addEventListener(`click`, function (e) {
+makeBtn.addEventListener(`click`, async function (e) {
+  const repsonse = await fetch("/api/users/idle");
+
+  const { message } = repsonse.json();
+
+  if (message === "relogin") return window.location.replace("/relogin");
+
   blogForm.dataset.id = 0;
   title.value = "";
   content.textContent = "";
@@ -82,29 +88,25 @@ async function editCurrentBlog(title, content, id) {
     headers: { "Content-Type": "application/json" },
   });
 
-  returnResponse(response);
+  await returnResponse(response);
 }
 
 async function returnResponse(response) {
+  const { message } = await response.json();
+  console.log(message);
+  const warning = message || `Sorry there has been an error uploading the blog`;
+
+  if (message === "relogin") return window.location.replace("/relogin");
   if (response.ok) {
     window.location.reload();
   } else {
-    const { message: responseData } = await response.json();
-    const warning =
-      responseData || `Sorry there has been an error uploading the blog`;
-
     warningText.textContent = warning;
     warningText.style.display = `inline`;
     showWarning(warningText);
   }
 }
 
-//DELETE CARD
-
-deleteBtn.addEventListener(`click`, deleteCard);
-
 async function deleteCard(e) {
-  e.stopPropagation();
   const mainBtn = e.target.previousElementSibling;
 
   const id = mainBtn.dataset.id;
@@ -114,8 +116,13 @@ async function deleteCard(e) {
   const response = await fetch(`/api/blogs/${id}`, {
     method: `DELETE`,
   });
-
+  const message = await response.json();
+  console.log(message);
+  if (message === `relogin`) return;
+  window.location.replace("/relogin");
   if (response.ok) {
     window.location.reload();
+  } else {
+    window.location.replace("/relogin");
   }
 }

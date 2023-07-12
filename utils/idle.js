@@ -1,8 +1,10 @@
 const idleAuth = (req, res, next) => {
+  console.log(req.session.idle);
   if (req.session.idle) {
-    req.redirect("/relogin");
+    return res.status(400).json({ message: "relogin" });
+  } else {
+    next();
   }
-  next();
 };
 
 module.exports = idleAuth;
