@@ -3,7 +3,7 @@ const sequelize = require("../config/connection");
 const { Blog, User, Comment } = require("../models");
 const withAuth = require(`../utils/auth`);
 
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     const blogData = await Blog.findAll({
       include: [
@@ -60,10 +60,10 @@ router.get("/blog/:id", withAuth, async (req, res) => {
 
     const { comments } = blog;
 
-    const commentData = comments.map(({ comment, user }) => {
-      return { comment: comment, username: user.username };
+    const commentData = comments.map((comment) => {
+      return comment;
     });
-
+    console.log(commentData);
     res.render("blog", {
       blog,
       userBlogs,
