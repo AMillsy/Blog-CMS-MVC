@@ -240,11 +240,7 @@ h3 {
 .account-btn:hover {
   cursor: pointer;
 }
-#logout {
-  position: absolute;
-  right: 0;
-  top: 0;
-}
+
 #logout:hover {
   cursor: pointer;
 }
@@ -350,4 +346,11 @@ h3 {
   position: absolute;
   width: 5%;
   z-index: 100;
+}
+
+.nav-buttons {
+  width: 25%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }

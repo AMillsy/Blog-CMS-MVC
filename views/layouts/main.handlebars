@@ -12,6 +12,13 @@
           <h1 class="hover-effect"><span class="header-logo">B</span>logged</h1>
         </a>
       </div>
+      <ul class="nav-buttons">
+        <li class="hover-effect"><a class="account-btn" href="/">Home</a></li>
+        <li><button
+            id="logout"
+            class="account-btn hover-effect"
+          >Logout</button></li>
+      </ul>
       <div class="button-container">
 
         {{#if loggedIn}}
@@ -28,3 +35,4 @@
 </html>
 
 <script src="/js/timeout.js"></script>
+<script src="/js/logout.js"></script>
