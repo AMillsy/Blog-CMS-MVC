@@ -17,10 +17,12 @@
             class="account-btn outline"
             href="/"
           >Home</a></li>
-        <li><button
-            id="logout"
-            class="account-btn hover-effect"
-          >Logout</button></li>
+        {{#if loggedIn}}
+          <li><button
+              id="logout"
+              class="account-btn hover-effect"
+            >Logout</button></li>{{else}}
+        {{/if}}
       </ul>
       <div class="button-container">
 
